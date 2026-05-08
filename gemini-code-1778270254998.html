@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tienda Mínima — General Roca</title>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Nunito',sans-serif;background:#e8232a;color:#fff;overflow-x:hidden}
+.bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bg span{position:absolute;border-radius:50%;background:rgba(255,255,255,.12)}
+.bg span:nth-child(1){width:500px;height:500px;top:-160px;right:-120px}
+.bg span:nth-child(2){width:320px;height:320px;bottom:-80px;left:-100px}
+.bg span:nth-child(3){width:180px;height:180px;top:40%;right:8%}
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;text-align:center}
+.logo-wrap{margin-bottom:32px}
+.logo-icon{width:100px;height:100px;border-radius:28px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:52px;margin:0 auto 20px;box-shadow:0 12px 40px rgba(0,0,0,.2)}
+.logo-name{font-family:'Righteous',sans-serif;font-size:38px;letter-spacing:2px;color:#fff;line-height:1;margin-bottom:8px}
+.logo-sub{font-size:14px;font-weight:700;color:rgba(255,255,255,.75);letter-spacing:1px;text-transform:uppercase}
+.divider{width:48px;height:3px;background:rgba(255,255,255,.4);border-radius:2px;margin:28px auto}
+.info-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:36px}
+.pill{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.3);padding:8px 18px;border-radius:50px;font-size:13px;font-weight:700;color:#fff}
+.ig-btn{display:flex;align-items:center;justify-content:center;gap:14px;background:#fff;color:#e8232a;padding:18px 40px;border-radius:20px;font-family:'Righteous',sans-serif;font-size:22px;letter-spacing:1px;text-decoration:none;box-shadow:0 16px 48px rgba(0,0,0,.2);transition:transform .2s,box-shadow .2s;margin-bottom:16px;width:100%;max-width:360px}
+.ig-btn:hover{transform:translateY(-4px);box-shadow:0 24px 56px rgba(0,0,0,.28)}
+.ig-btn svg{width:32px;height:32px;flex-shrink:0}
+.ig-btn-sub{font-size:13px;color:rgba(255,255,255,.65);font-weight:700;margin-bottom:40px}
+.contact-grid{display:flex;flex-direction:column;gap:10px;width:100%;max-width:360px;margin-bottom:20px}
+.contact-card{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.25);border-radius:16px;padding:14px 20px;text-decoration:none;color:#fff;transition:background .2s;text-align:left}
+.contact-card:hover{background:rgba(255,255,255,.25)}
+.cc-icon{font-size:22px;flex-shrink:0;width:36px;text-align:center}
+.cc-label{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:2px}
+.cc-val{font-size:14px;font-weight:700;color:#fff}
+
+.map-container {
+    width: 100%;
+    max-width: 360px;
+    height: 150px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.5px solid rgba(255,255,255,.25);
+    margin-bottom: 20px;
+    position: relative;
+}
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.map-overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(232, 35, 42, 0.9);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hours-card{background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.25);border-radius:16px;padding:20px 24px;width:100%;max-width:360px;margin-bottom:40px}
+.hours-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.hours-title{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.status-badge{font-size:10px;font-weight:900;padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px}
+.status-open{background:#4ade80;color:#064e3b}
+.status-closed{background:rgba(255,255,255,0.2);color:#fff}
+.hours-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.hours-row:last-child{border-bottom:none}
+.hours-day{font-size:13px;font-weight:700;color:rgba(255,255,255,.85)}
+.hours-time{font-size:13px;font-weight:800;color:#fff}
+.hours-closed{color:rgba(255,255,255,.4)}
+.footer{font-size:12px;color:rgba(255,255,255,.4);font-weight:600}
+</style>
+</head>
+<body>
+<div class="bg"><span></span><span></span><span></span></div>
+<div class="page">
+  <div class="logo-wrap">
+    <div class="logo-icon" style="background:#e8232a;font-family:'Times New Roman',Times,serif;font-size:72px;font-weight:700;color:#fff;letter-spacing:0">m</div>
+    <div class="logo-name">TIENDA MÍNIMA</div>
+    <div class="logo-sub">General Roca · Río Negro</div>
+  </div>
+  <div class="info-row">
+    <div class="pill"><span>📍</span> Tucumán 461</div>
+    <div class="pill"><span>⭐</span> 100% recomendado</div>
+    <div class="pill"><span>👥</span> 6.190 seguidores</div>
+  </div>
+  <div class="divider"></div>
+  <a class="ig-btn" href="https://instagram.com/tiendaminima" target="_blank">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="20" height="20" rx="6" stroke="#e8232a" stroke-width="2"/>
+      <circle cx="12" cy="12" r="4" stroke="#e8232a" stroke-width="2"/>
+      <circle cx="17.5" cy="6.5" r="1" fill="#e8232a"/>
+    </svg>
+    @tiendaminima
+  </a>
+  <div class="ig-btn-sub">Seguinos para ver todos nuestros productos</div>
+  
+  <div class="contact-grid">
+    <a class="contact-card" href="https://wa.me/5492984788801" target="_blank">
+      <div class="cc-icon">💬</div>
+      <div>
+        <div class="cc-label">WhatsApp</div>
+        <div class="cc-val">Escribinos por chat</div>
+      </div>
+    </a>
+    <a class="contact-card" href="mailto:tiendaminima@hotmail.com">
+      <div class="cc-icon">✉️</div>
+      <div>
+        <div class="cc-label">Email</div>
+        <div class="cc-val">tiendaminima@hotmail.com</div>
+      </div>
+    </a>
+  </div>
+
+  <a href="https://www.google.com/maps?q=Tucumán+461,+General+Roca" target="_blank" class="map-container">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3103.5467362085344!2d-67.57861!3d-39.02896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95edae4e55555555%3A0x1234567890abcdef!2sTucumán%20461%2C%20General%20Roca!5e0!3m2!1ses!2sar!4v1234567890" 
+        allowfullscreen="" 
+        loading="lazy" 
+        style="pointer-events: none;">
+    </iframe>
+    <div class="map-overlay">📍 Ver ubicación</div>
+  </a>
+
+  <div class="hours-card">
+    <div class="hours-header">
+      <div class="hours-title">🕐 Horarios de atención</div>
+      <div id="status-label" class="status-badge">Verificando...</div>
+    </div>
+    <div class="hours-row">
+      <div class="hours-day">Lunes a Viernes</div>
+      <div class="hours-time">9–13 · 16:30–20:30</div>
+    </div>
+    <div class="hours-row">
+      <div class="hours-day">Sábados</div>
+      <div class="hours-time">9–13 · 16:30–20:30</div>
+    </div>
+    <div class="hours-row">
+      <div class="hours-day">Domingos</div>
+      <div class="hours-time hours-closed">Cerrado</div>
+    </div>
+  </div>
+  <div class="footer">© 2025 Tienda Mínima · General Roca, Río Negro</div>
+</div>
+
+<script>
+  function updateStoreStatus() {
+    const now = new Date();
+    // Ajustar a hora local de Argentina (GMT-3) si el servidor/dispositivo difiere
+    const day = now.getDay(); // 0: Domingo, 1: Lunes... 6: Sábado
+    const hour = now.getHours() + (now.getMinutes() / 60);
+    const label = document.getElementById('status-label');
+
+    let isOpen = false;
+
+    // Horarios: 9:00 a 13:00 (9-13) y 16:30 a 20:30 (16.5-20.5)
+    const morningOpen = 9;
+    const morningClose = 13;
+    const afternoonOpen = 16.5;
+    const afternoonClose = 20.5;
+
+    if (day >= 1 && day <= 6) { // Lunes a Sábado
+      if ((hour >= morningOpen && hour < morningClose) || (hour >= afternoonOpen && hour < afternoonClose)) {
+        isOpen = true;
+      }
+    }
+
+    if (isOpen) {
+      label.textContent = "Abierto ahora";
+      label.className = "status-badge status-open";
+    } else {
+      label.textContent = "Cerrado";
+      label.className = "status-badge status-closed";
+    }
+  }
+
+  updateStoreStatus();
+  setInterval(updateStoreStatus, 60000); // Actualizar cada minuto
+</script>
+</body>
+</html>
